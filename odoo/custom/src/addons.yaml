@@ -1,0 +1,3 @@
+openupgrade:
+  - "openupgrade_scripts"
+  - "openupgrade_framework"

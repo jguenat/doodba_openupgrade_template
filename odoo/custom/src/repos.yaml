@@ -14,3 +14,12 @@
     - ocb $ODOO_VERSION
     # Example of a merge of the PR with the number <PR>
     # - oca refs/pull/<PR>/head
+
+openupgrade:
+  defaults:
+    depth: 10
+  remotes:
+    openupgrade: https://github.com/OCA/OpenUpgrade.git
+  target: openupgrade $ODOO_VERSION
+  merges:
+    - openupgrade $ODOO_VERSION
