@@ -170,5 +170,7 @@ networks:
   public:
 
 volumes:
-  filestore:
-  db:
+  filestore_openupgrade:
+    external: true
+  db_openupgrade:
+    external: true
