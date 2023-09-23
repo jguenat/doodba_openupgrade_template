@@ -1,0 +1,26 @@
+# Changes here will be overwritten by Copier; NEVER EDIT MANUALLY
+_commit: v5.2.0
+_src_path: gh:Tecnativa/doodba-copier-template
+backup_dst: ""
+cidr_whitelist: null
+domains_prod: null
+domains_test: null
+gitlab_url: ""
+odoo_dbfilter: ^prod
+odoo_initial_lang: en_US
+odoo_listdb: true
+odoo_oci_image: ""
+odoo_proxy: traefik
+odoo_version: 16.0
+paths_without_crawlers:
+  - /web
+  - /website/info
+postgres_dbname: prod
+postgres_exposed: false
+postgres_username: odoo
+postgres_version: "13"
+project_author: jguenat
+project_license: BSL-1.0
+project_name: openupgrade16
+smtp_default_from: ""
+smtp_relay_host: ""
