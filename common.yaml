@@ -17,7 +17,7 @@ services:
       LIST_DB: "true"
     tty: true
     volumes:
-      - filestore:/var/lib/odoo:z
+      - filestore_openupgrade:/var/lib/odoo:z
     labels:
       traefik.backend.buffering.retryExpression: IsNetworkError() && Attempts() < 5
       traefik.docker.network: "inverseproxy_shared"
@@ -33,7 +33,7 @@ services:
       CONF_EXTRA: |
         work_mem = 512MB
     volumes:
-      - db:/var/lib/postgresql/data:z
+      - db_openupgrade:/var/lib/postgresql/data:z
 
   smtpfake:
     image: docker.io/mailhog/mailhog
