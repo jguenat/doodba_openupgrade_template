@@ -25,6 +25,7 @@
 /.venv
 /doodba.*.code-workspace
 /src
+/backup
 
 # Project-specific docker configurations
 /.docker/

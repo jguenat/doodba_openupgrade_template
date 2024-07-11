@@ -44,6 +44,7 @@ services:
       # To avoid installing demo data export DOODBA_WITHOUT_DEMO=all
       WITHOUT_DEMO: "${DOODBA_WITHOUT_DEMO-false}"
     volumes:
+      - ./backup:/backup:rw,z
       - ./odoo/custom:/opt/odoo/custom:ro,z
       - ./odoo/auto:/opt/odoo/auto:rw,z
     depends_on:
@@ -171,5 +172,7 @@ networks:
   public:
 
 volumes:
-  filestore:
-  db:
+  filestore_openupgrade:
+    external: true
+  db_openupgrade:
+    external: true
