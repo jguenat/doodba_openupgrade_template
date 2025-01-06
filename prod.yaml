@@ -13,6 +13,7 @@ services:
       DB_FILTER: "^prod"
       DOODBA_ENVIRONMENT: "${DOODBA_ENVIRONMENT-prod}"
       INITIAL_LANG: "en_US"
+      ODOO_BUS_PUBLIC_SAMESITE_WS: 1
     depends_on:
       - db
     networks:
