@@ -33,9 +33,6 @@ networks:
     driver_opts:
       encrypted: 1
 
-  inverseproxy_shared:
-    external: true
-
 volumes:
   filestore:
   db:
