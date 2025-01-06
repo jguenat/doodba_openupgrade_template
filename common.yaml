@@ -5,6 +5,7 @@ services:
     build:
       context: ./odoo
       args:
+        DB_VERSION: "13"
         ODOO_VERSION: "14.0"
         UID: "${UID:-1000}"
         GID: "${GID:-1000}"
@@ -12,16 +13,11 @@ services:
       EMAIL_FROM: ""
       PGDATABASE: &dbname prod
       PGUSER: &dbuser "odoo"
-      PROXY_MODE: "true"
+      PROXY_MODE: "false"
       LIST_DB: "true"
     tty: true
     volumes:
       - filestore_openupgrade:/var/lib/odoo:z
-    labels:
-      traefik.backend.buffering.retryExpression: IsNetworkError() && Attempts() < 5
-      traefik.docker.network: "inverseproxy_shared"
-      traefik.frontend.passHostHeader: "true"
-      traefik.port: "8069"
 
   db:
     image: ghcr.io/tecnativa/postgres-autoconf:13-alpine
