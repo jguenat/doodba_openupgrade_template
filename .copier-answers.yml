@@ -1,5 +1,5 @@
 # Changes here will be overwritten by Copier; NEVER EDIT MANUALLY
-_commit: v7.0.1
+_commit: v8.2.1
 _src_path: gh:Tecnativa/doodba-copier-template
 backup_dst: ""
 cidr_whitelist: null

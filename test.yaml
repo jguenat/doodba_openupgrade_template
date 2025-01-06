@@ -10,10 +10,13 @@ services:
       - .docker/db-access.env
     environment:
       DOODBA_ENVIRONMENT: "${DOODBA_ENVIRONMENT-test}"
+      ODOO_BUS_PUBLIC_SAMESITE_WS: 1
       # To install demo data export DOODBA_WITHOUT_DEMO=false
       WITHOUT_DEMO: "${DOODBA_WITHOUT_DEMO-all}"
       SMTP_PORT: "1025"
       SMTP_SERVER: smtplocal
+      # Just in case you use queue_job
+      ODOO_QUEUE_JOB_CHANNELS: "root:1"
     restart: unless-stopped
     depends_on:
       - db
@@ -25,7 +28,7 @@ services:
       doodba.domain.main: ""
     command:
       - odoo
-      - --workers=2
+      - --workers=3
       - --max-cron-threads=1
 
   db:
