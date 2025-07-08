@@ -64,6 +64,8 @@ services:
       - --limit-time-real=9999999
       - --workers=0
       - --dev=reload,qweb,werkzeug,xml
+      # - --load=web,openupgrade_framework
+      # - --upgrade-path=/opt/odoo/auto/addons/openupgrade_scripts/scripts/
 
   db:
     extends:
