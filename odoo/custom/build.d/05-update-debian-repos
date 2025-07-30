@@ -1,0 +1,16 @@
+#!/bin/bash
+# First remove sources
+sed -i '/deb http:\/\/deb.debian.org\/debian jessie main/d' /etc/apt/sources.list
+sed -i '/deb http:\/\/security.debian.org\/debian-security jessie\/updates main/d' /etc/apt/sources.list
+
+# Second add archive sources
+echo "deb [check-valid-until=no] http://archive.debian.org/debian jessie main" > /etc/apt/sources.list.d/jessie.list
+echo "deb [check-valid-until=no] http://archive.debian.org/debian-security jessie/updates main" >> /etc/apt/sources.list.d/jessie.list
+
+# PostgreSql repositories
+# First one removes the current line
+echo "deb https://apt-archive.postgresql.org/pub/repos/apt jessie-pgdg-archive main" > /etc/apt/sources.list.d/postgresql.list
+# Second one appends
+echo "deb-src https://apt-archive.postgresql.org/pub/repos/apt jessie-pgdg-archive main" >> /etc/apt/sources.list.d/postgresql.list
+
+apt-get -o Acquire::Check-Valid-Until=false update
