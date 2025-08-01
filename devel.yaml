@@ -43,12 +43,15 @@ services:
       WDB_WEB_PORT: "16984"
       # To avoid installing demo data export DOODBA_WITHOUT_DEMO=all
       WITHOUT_DEMO: "${DOODBA_WITHOUT_DEMO-false}"
+      PGHOST: "openupgrade_shared_db"
+    networks:
+      default:
+      database_openupgrade_network:
     volumes:
       - ./backup:/backup:rw,z
       - ./odoo/custom:/opt/odoo/custom:ro,z
       - ./odoo/auto:/opt/odoo/auto:rw,z
     depends_on:
-      - db
       - proxy_cdnjs_cloudflare_com
       - proxy_fonts_googleapis_com
       - proxy_fonts_gstatic_com
@@ -67,23 +70,15 @@ services:
       # - --load=web,openupgrade_framework
       # - --upgrade-path=/opt/odoo/auto/addons/openupgrade_scripts/scripts/
 
-  db:
-    extends:
-      file: common.yaml
-      service: db
-    environment:
-      POSTGRES_DB: *dbname
-      POSTGRES_PASSWORD: odoopassword
-
   pgweb:
     image: docker.io/sosedoff/pgweb
-    networks: *public
+    networks:
+      public:
+      database_openupgrade_network:
     ports:
       - "127.0.0.1:16081:8081"
     environment:
-      DATABASE_URL: postgres://odoo:odoopassword@db:5432/devel?sslmode=disable
-    depends_on:
-      - db
+      PGWEB_DATABASE_URL: postgres://odoo:odoopassword@openupgrade_shared_db:5432/devel?sslmode=disable
 
   smtp:
     extends:
@@ -171,10 +166,11 @@ services:
 networks:
   default:
     internal: ${DOODBA_NETWORK_INTERNAL-true}
+  database_openupgrade_network:
+    internal: true
+    name: database_openupgrade_network
   public:
 
 volumes:
   filestore_openupgrade:
-    external: true
-  db_openupgrade:
     external: true
