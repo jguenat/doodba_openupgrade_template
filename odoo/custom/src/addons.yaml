@@ -1,0 +1,28 @@
+account-financial-reporting:
+  - "*"
+account-financial-tools:
+  - "*"
+account-payment:
+  - "*"
+account-reconcile:
+  - "*"
+bank-statement-import:
+  - "*"
+bank-payment:
+  - "*"
+l10n-switzerland:
+  - "*"
+mis-builder:
+  - "*"
+partner-contact:
+  - "*"
+project:
+  - "*"
+reporting-engine:
+  - "*"
+sale-workflow:
+  - "*"
+server-tools:
+  - "*"
+web:
+  - "*"
