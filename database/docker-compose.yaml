@@ -1,0 +1,23 @@
+services:
+  openupgrade_shared_db:
+    image: ghcr.io/tecnativa/postgres-autoconf:13-alpine
+    shm_size: 4gb
+    environment:
+      POSTGRES_DB: "prod"
+      POSTGRES_USER: "odoo"
+      POSTGRES_PASSWORD: odoopassword
+      CONF_EXTRA: |
+        work_mem = 512MB
+    networks:
+      database_openupgrade_network:
+    volumes:
+      - db_openupgrade:/var/lib/postgresql/data:z
+
+networks:
+  database_openupgrade_network:
+    internal: true
+    name: database_openupgrade_network
+
+volumes:
+  db_openupgrade:
+    external: true
