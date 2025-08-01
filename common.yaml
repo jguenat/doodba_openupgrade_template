@@ -19,16 +19,5 @@ services:
     volumes:
       - filestore_openupgrade:/var/lib/odoo:z
 
-  db:
-    image: ghcr.io/tecnativa/postgres-autoconf:13-alpine
-    shm_size: 4gb
-    environment:
-      POSTGRES_DB: *dbname
-      POSTGRES_USER: *dbuser
-      CONF_EXTRA: |
-        work_mem = 512MB
-    volumes:
-      - db_openupgrade:/var/lib/postgresql/data:z
-
   smtpfake:
     image: docker.io/mailhog/mailhog
